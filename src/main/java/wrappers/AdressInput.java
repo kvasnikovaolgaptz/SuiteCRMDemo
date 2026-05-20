@@ -20,15 +20,5 @@ public class AdressInput {
                 "td//input", addressLabel, label))).sendKeys(text);
 
     }
-
-/*
-    public void write(String text) {
-        driver.findElement(By.xpath(String.format("//legend[contains(text(),'%s')]/ancestor::" +
-                "div[contains(@class, 'edit-view-field')]//*[contains(text(), '%s')]//ancestor::"+
-                "tr//textarea", addressLabel, label))).sendKeys(text);
-
-    }
-
- */
 }
 

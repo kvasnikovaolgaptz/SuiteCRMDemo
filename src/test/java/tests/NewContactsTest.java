@@ -2,21 +2,38 @@ package tests;
 
 import dto.Contacts;
 import org.testng.annotations.Test;
+import step.ContactsStep;
 
 public class NewContactsTest extends BaseTest{
-    Contacts contacts = new Contacts("Miss","Ольга","8-814-2-40-56-21","менеджер",
-            "Olga","Смирнова","8-911-400-40-33","Министерство",
-            "8-814-2-40-56-21","190000, Россия, РК, г. Петрозаводск, ул. Лисицына, д.10, кв.10",
-            "190000, Россия, г. Москва, ул. Лисицына, д.10, кв.10",
-            "г. Петрозаводск", "РК","Россия","186000",
-            "г. Москва","190000","Россия","","нет",
-            "Cold Call","");
+
+    Contacts contacts = Contacts.builder()
+            .title("Miss")
+            .firstName("Ольга")
+            .officePhone("8-814-2-40-56-21")
+            .jobTitle("менеджер")
+            .accountName("Olga")
+            .lastName("Смирнова")
+            .mobile("8-911-400-40-33")
+            .department("Министерство")
+            .fax("8-814-2-40-56-21")
+            .primaryAddress("190000, Россия, РК, г. Петрозаводск, ул. Лисицына, д.10, кв.10")
+            .otherAddress("190000, Россия, г. Москва, ул. Лисицына, д.10, кв.10")
+            .primaryCity("г. Петрозаводск")
+            .primaryStateOrRegion("РК")
+            .primaryCountry("Россия")
+            .primaryPostalCode("186000")
+            .otherCity("г. Москва")
+            .otherPostalCode("190000")
+            .otherCountry("Россия")
+            .otherStateOrRegion("")
+            .description("нет")
+            .leadSource("Cold Call")
+            .campaign("")
+            .build();
+
     @Test(testName = "Вход в систему с позитивными кредами")
     public void checkAddNewContacts(){
-        newContactsPage.open()
-                        .checkLoginWithPositiveCred()
-                        .openNewAccount()
-                        .addNewContacts(contacts)
-                        .clickSave();
+        loginStep.auth("will","will");
+        contactsStep.createContacts(contacts);
     }
 }
