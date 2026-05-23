@@ -15,6 +15,7 @@ import pages.NewContactsPage;
 import step.AccountStep;
 import step.ContactsStep;
 import step.LoginStep;
+import utils.PropertyReader;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -25,8 +26,8 @@ public class BaseTest {
     protected LoginStep loginStep;
     protected AccountStep accountStep;
     protected ContactsStep contactsStep;
-    protected String user = System.getProperty("user");
-    protected String password = System.getProperty("password");
+    protected String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    protected String password = System.getProperty("password", PropertyReader.getProperty("password"));
 
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
