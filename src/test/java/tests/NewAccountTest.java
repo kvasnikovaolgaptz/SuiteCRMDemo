@@ -37,7 +37,7 @@ public class NewAccountTest extends BaseTest{
 
     @Test(testName = "Вход в систему с позитивными кредами")
     public void checkAddNewAccount(){
-        loginStep.auth("will","will");
+        loginStep.auth(user,password);
         accountStep.createAccount(account2);
     }
 }

@@ -33,7 +33,7 @@ public class NewContactsTest extends BaseTest{
 
     @Test(testName = "Вход в систему с позитивными кредами")
     public void checkAddNewContacts(){
-        loginStep.auth("will","will");
+        loginStep.auth(user,password);
         contactsStep.createContacts(contacts);
     }
 }
