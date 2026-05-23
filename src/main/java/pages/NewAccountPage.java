@@ -1,9 +1,12 @@
 package pages;
 
 import dto.Account;
+import lombok.SneakyThrows;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import wrappers.*;
 
+@Log4j2
 public class NewAccountPage extends BasePage {
 
 
@@ -14,23 +17,13 @@ public class NewAccountPage extends BasePage {
         super(driver);
     }
 
-    public NewAccountPage open(){
-       driver.get(BASE_URL);
-       return this;
-    }
-    public NewAccountPage checkLoginWithPositiveCred() {
-        js.executeScript("document.getElementById('user_name').value = arguments[0];", "will");
-        js.executeScript("document.getElementById('username_password').value = arguments[0];", "will");
-        js.executeScript("document.getElementsByName('Login')[0].click();");
-        return this;
-    }
-
     public NewAccountPage openNewAccount(){
         driver.get(BASE_URL);
         return this;
     };
-
+    //@SneakyThrows можно пользоваться для отладки
     public NewAccountPage addNewAccount(Account account) {
+        log.info("Adding new account with name: '{}'",account.getName());
         new Input(driver, "Name").write(account.getName());
         new Input(driver, "Office Phone").write(account.getPhone());
         new Input(driver, "Fax").write(account.getFax());
@@ -50,7 +43,9 @@ public class NewAccountPage extends BasePage {
         new Dropdown(driver,"Industry").select(account.getIndustry()); // был Apparel
         return this;
     };
+
     public SaveAccountPage clickSave() {
+        log.info("A new account has been saved");
         js.executeScript("document.getElementById('SAVE').click();");
         return new SaveAccountPage(driver);
     }

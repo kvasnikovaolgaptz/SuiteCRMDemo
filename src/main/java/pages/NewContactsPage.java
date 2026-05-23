@@ -1,9 +1,11 @@
 package pages;
 
 import dto.Contacts;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import wrappers.*;
 
+@Log4j2
 public class NewContactsPage extends BasePage {
     //JavascriptExecutor js = (JavascriptExecutor) driver;
 
@@ -14,24 +16,13 @@ public class NewContactsPage extends BasePage {
         super(driver);
     }
 
-    public NewContactsPage open(){
-        driver.get(BASE_URL); // Открывает страницу по указанному URL
-        return this;
-    }
-
-    public NewContactsPage checkLoginWithPositiveCred() {
-        js.executeScript("document.getElementById('user_name').value = arguments[0];", "will");
-        js.executeScript("document.getElementById('username_password').value = arguments[0];", "will");
-        js.executeScript("document.getElementsByName('Login')[0].click();");
-        return this;
-    }
-
     public NewContactsPage openNewAccount() {
         driver.get(BASE_URL);
         return this;
     };
 
     public NewContactsPage addNewContacts(Contacts contacts) {
+        log.info("Adding new contact with last name '{}'", contacts.getLastName());
         new Dropdown(driver,"First Name").select(contacts.getTitle());
         new Input(driver, "First Name").write(contacts.getFirstName());
         new Input(driver, "Office Phone").write(contacts.getOfficePhone());
@@ -63,6 +54,7 @@ public class NewContactsPage extends BasePage {
     }
 
     public SaveAccountPage clickSave() {
+        log.info("A new contact has been saved");
         js.executeScript("document.getElementById('SAVE').click();");
         return new SaveAccountPage(driver);
     }
