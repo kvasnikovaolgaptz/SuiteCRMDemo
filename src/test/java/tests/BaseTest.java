@@ -58,8 +58,8 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)); // Неявное ожидание
     }
 
-     @AfterMethod(alwaysRun = true)
-     public void tearDown() {
-         driver.quit();
-     }
+     //@AfterMethod(alwaysRun = true)
+    // public void tearDown() {
+    //     driver.quit();
+    // }
 }

@@ -14,6 +14,7 @@ public class BasePage {
     protected JavascriptExecutor js;
     public final String BASE_URL = "https://demo.suiteondemand.com/index.php?action=Login&module=Users";
 
+
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 
@@ -28,10 +29,10 @@ public class BasePage {
         return this;
     }
 
-    public BasePage checkLoginWithPositiveCred() {
+    public BasePage checkLoginWithPositiveCred(String user, String password) {
         log.info("log in with credential");
-        js.executeScript("document.getElementById('user_name').value = arguments[0];", "will");
-        js.executeScript("document.getElementById('username_password').value = arguments[0];", "will");
+        js.executeScript("document.getElementById('user_name').value = arguments[0];", user);
+        js.executeScript("document.getElementById('username_password').value = arguments[0];", password);
         js.executeScript("document.getElementsByName('Login')[0].click();");
         return this;
     }

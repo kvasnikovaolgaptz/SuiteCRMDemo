@@ -14,6 +14,6 @@ public class LoginStep {
 
     public void auth (String user, String password) {
         basePage.open();
-        basePage.checkLoginWithPositiveCred();
+        basePage.checkLoginWithPositiveCred(user, password);
     }
 }
