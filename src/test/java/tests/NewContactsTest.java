@@ -1,9 +1,17 @@
 package tests;
 
 import dto.Contacts;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import jdk.jfr.Description;
 import org.testng.annotations.Test;
 import step.ContactsStep;
+import utils.AllureUtils;
 
+@Test(testName = "Создание нового контакта")
+@Description("Создание аккаунта")
+@Epic("E2E")
+@Feature("Создание нового контакта реальными значениями")
 public class NewContactsTest extends BaseTest{
 
     Contacts contacts = Contacts.builder()
@@ -34,6 +42,8 @@ public class NewContactsTest extends BaseTest{
     @Test(testName = "Вход в систему с позитивными кредами")
     public void checkAddNewContacts(){
         loginStep.auth(user,password);
+        AllureUtils.takeScreenshot(driver);
         contactsStep.createContacts(contacts);
+        AllureUtils.takeScreenshot(driver);
     }
 }
