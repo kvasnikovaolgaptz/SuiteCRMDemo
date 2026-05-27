@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -22,21 +23,23 @@ public class BasePage {
         this.driver = driver;
         this.js = (JavascriptExecutor) driver;
     }
-
+    @Step("Открытие страницы login")
     public BasePage open() {
         log.info("loginPage opening");
         driver.get(BASE_URL);
         return this;
     }
-
+    @Step("Авторизация в системе под пользователем c логином *** паролем *** ")
     public BasePage checkLoginWithPositiveCred(String user, String password) {
         log.info("log in with credential");
         js.executeScript("document.getElementById('user_name').value = arguments[0];", user);
         js.executeScript("document.getElementById('username_password').value = arguments[0];", password);
         js.executeScript("document.getElementsByName('Login')[0].click();");
+
         return this;
     }
 
+    @Step("Сохранение введенных данных")
     public BasePage clickSave() {
         log.info("Page save");
         js.executeScript("document.getElementById('SAVE').click();");

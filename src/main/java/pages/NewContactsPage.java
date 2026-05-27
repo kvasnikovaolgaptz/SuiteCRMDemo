@@ -1,6 +1,7 @@
 package pages;
 
 import dto.Contacts;
+import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import wrappers.*;
@@ -21,6 +22,7 @@ public class NewContactsPage extends BasePage {
         return this;
     };
 
+    @Step("Добавление нового контакта")
     public NewContactsPage addNewContacts(Contacts contacts) {
         log.info("Adding new contact with last name '{}'", contacts.getLastName());
         new Dropdown(driver,"First Name").select(contacts.getTitle());
@@ -53,6 +55,7 @@ public class NewContactsPage extends BasePage {
         return this;
     }
 
+    @Step("Сохранение введенных данных")
     public SaveAccountPage clickSave() {
         log.info("A new contact has been saved");
         js.executeScript("document.getElementById('SAVE').click();");

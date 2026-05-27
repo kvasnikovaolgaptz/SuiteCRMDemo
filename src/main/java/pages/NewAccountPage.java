@@ -1,6 +1,7 @@
 package pages;
 
 import dto.Account;
+import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +23,7 @@ public class NewAccountPage extends BasePage {
         return this;
     };
     //@SneakyThrows можно пользоваться для отладки
+    @Step("Добавление нового аккаунта (рандомными значениями)")
     public NewAccountPage addNewAccount(Account account) {
         log.info("Adding new account with name: '{}'",account.getName());
         new Input(driver, "Name").write(account.getName());
@@ -44,6 +46,7 @@ public class NewAccountPage extends BasePage {
         return this;
     };
 
+    @Step("Сохранение введенных данных")
     public SaveAccountPage clickSave() {
         log.info("A new account has been saved");
         js.executeScript("document.getElementById('SAVE').click();");
